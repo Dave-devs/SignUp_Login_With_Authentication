@@ -1,11 +1,12 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.presentation
+package com.dave_devs.signupandloginwithfirebaseauthentication.presentation.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases.SignUpAuthenticationUseCase
-import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.SignUpAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.SignUpAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.presentation.states.SignUpStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

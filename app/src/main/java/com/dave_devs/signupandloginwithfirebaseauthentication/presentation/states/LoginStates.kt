@@ -1,4 +1,4 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.presentation
+package com.dave_devs.signupandloginwithfirebaseauthentication.presentation.states
 
 data class LoginStates(
     val nameInput: String = "",

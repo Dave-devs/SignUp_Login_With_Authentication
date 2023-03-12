@@ -1,11 +1,12 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.presentation
+package com.dave_devs.signupandloginwithfirebaseauthentication.presentation.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases.LoginAuthenticationUseCase
-import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.LoginAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.LoginAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.presentation.states.LoginStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class LoginViewModel @Inject constructor(
     private val loginAuthenticationUseCase: LoginAuthenticationUseCase
 ): ViewModel() {
 
-    //Private set to be able to change in login screen
+    //Private set to be able to change in viewModel
     var loginState by mutableStateOf(LoginStates())
         private set
 

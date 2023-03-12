@@ -1,6 +1,6 @@
 package com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases
 
-import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.SignUpAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.SignUpAuthenticationType
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.containSpecialChar
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.containUpperCase
 

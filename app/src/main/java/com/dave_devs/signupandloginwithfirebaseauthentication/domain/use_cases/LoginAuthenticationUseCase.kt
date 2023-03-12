@@ -1,6 +1,6 @@
 package com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases
 
-import com.dave_devs.signupandloginwithfirebaseauthentication.domain.util.LoginAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.LoginAuthenticationType
 
 class LoginAuthenticationUseCase {
 

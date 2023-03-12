@@ -1,4 +1,4 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.domain.util
+package com.dave_devs.signupandloginwithfirebaseauthentication.domain
 
 sealed class SignUpAuthenticationType {
     object Valid: SignUpAuthenticationType()
