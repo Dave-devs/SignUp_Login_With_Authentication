@@ -4,15 +4,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases.LoginAuthenticationUseCase
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.LoginAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.repository.SignUpLoginRepository
 import com.dave_devs.signupandloginwithfirebaseauthentication.presentation.states.LoginStates
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginAuthenticationUseCase: LoginAuthenticationUseCase
+    private val loginAuthenticationUseCase: LoginAuthenticationUseCase,
+    private val repository: SignUpLoginRepository
 ): ViewModel() {
 
     //Private set to be able to change in viewModel
@@ -37,6 +41,7 @@ class LoginViewModel @Inject constructor(
         )
         checkInputValidation()
     }
+
     fun onToggleVisibilityTransformation() {
         loginState = loginState.copy(
             isPasswordShown = !loginState.isPasswordShown
@@ -62,6 +67,24 @@ class LoginViewModel @Inject constructor(
             }
             LoginAuthenticationType.Valid -> {
                 loginState.copy(errorMessageInput = null, isInputValid = true)
+            }
+        }
+    }
+
+    fun onLoginClicked() {
+        loginState = loginState.copy(isLoading = true)
+        viewModelScope.launch{
+            loginState = try {
+                val loginResult = repository.loginAuth(
+                    name = loginState.nameInput,
+                    email = loginState.emailInput,
+                    password = loginState.passwordInput
+                )
+                loginState.copy(isSuccessfullyLoggedIn = loginResult)
+            } catch(e: Exception) {
+                loginState.copy(errorMessageLoginProcess = "Unable to login")
+            } finally {
+                loginState.copy(isLoading = false)
             }
         }
     }

@@ -4,15 +4,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.use_cases.SignUpAuthenticationUseCase
 import com.dave_devs.signupandloginwithfirebaseauthentication.domain.SignUpAuthenticationType
+import com.dave_devs.signupandloginwithfirebaseauthentication.domain.repository.SignUpLoginRepository
 import com.dave_devs.signupandloginwithfirebaseauthentication.presentation.states.SignUpStates
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val signUpAuthenticationUseCase: SignUpAuthenticationUseCase
+    private val signUpAuthenticationUseCase: SignUpAuthenticationUseCase,
+    private val repository: SignUpLoginRepository
 ): ViewModel() {
 
     var signUpState by mutableStateOf(SignUpStates())
@@ -30,13 +34,13 @@ class SignUpViewModel @Inject constructor(
         )
          checkInputValidation()
     }
-    fun onPasswordInput(newValue: String) {
+    fun onPasswordInputChange(newValue: String) {
         signUpState = signUpState.copy(
             passwordInput = newValue
         )
          checkInputValidation()
     }
-    fun onRepeatedPasswordInput(newValue: String) {
+    fun onRepeatedPasswordInputChange(newValue: String) {
         signUpState = signUpState.copy(
             repeatedPasswordInput = newValue
         )
@@ -80,6 +84,24 @@ class SignUpViewModel @Inject constructor(
             }
             is SignUpAuthenticationType.PasswordDoNotMatch -> {
                 signUpState.copy(errorMessageInput = "Password do not match", isInputValid = false)
+            }
+        }
+    }
+
+    fun onSignUpClicked() {
+        signUpState = signUpState.copy(isLoading = true)
+        viewModelScope.launch{
+            signUpState = try {
+                val signUpResult = repository.loginAuth(
+                    name = signUpState.nameInput,
+                    email = signUpState.emailInput,
+                    password = signUpState.passwordInput
+                )
+                signUpState.copy(isSuccessfullySignedUp = signUpResult)
+            } catch(e: Exception) {
+                signUpState.copy(errorMessageSignUpProcess = "Unable to login")
+            } finally {
+                signUpState.copy(isLoading = false)
             }
         }
     }

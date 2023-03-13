@@ -28,12 +28,11 @@ fun EditTextField(
     valueText: String,
     hint: String,
     textColor: Color,
-    //imageVector: ImageVector,
     keyboardType: KeyboardType = KeyboardType.Ascii,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onValueChanged: (String) -> Unit,
     trailingIcon: ImageVector? = null,
-    leadingIcon: ImageVector,
+    leadingIcon: ImageVector?,
     onTrailingIconClicked: (() -> Unit)?,
     cursorColor: Color
 ) {
@@ -62,11 +61,13 @@ fun EditTextField(
             )
         },
         leadingIcon = {
-            Icon(
-                imageVector = leadingIcon,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
-            )
+            if (leadingIcon != null) {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
         },
         trailingIcon = {
             if(trailingIcon != null) {
@@ -89,7 +90,8 @@ fun EditTextField(
 @Composable
 fun EditTextFieldPreview() {
     EditTextField(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(10.dp, 0.dp,10.dp,5.dp),
         hint = "JohnDeo@Gmail.com",
         leadingIcon = Icons.Default.Email,

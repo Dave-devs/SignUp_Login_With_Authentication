@@ -11,5 +11,5 @@ data class SignUpStates(
     val errorMessageInput: String? = null,
     val isLoading: Boolean = false,
     val isSuccessfullySignedUp: Boolean = false,
-    val errorMessageSignedProcess: String? = null
+    val errorMessageSignUpProcess: String? = null
 )

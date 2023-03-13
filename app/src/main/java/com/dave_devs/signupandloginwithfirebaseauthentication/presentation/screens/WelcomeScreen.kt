@@ -16,17 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.dave_devs.signupandloginwithfirebaseauthentication.R
 
 @Composable
 fun WelcomeScreen(
     modifier: Modifier = Modifier,
-    buttonText: String,
-    buttonColor: Color,
-    description: String,
-    textColor: Color,
-    onButtonClick: () -> Unit
+    onNavToLoginScreen: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -49,7 +44,8 @@ fun WelcomeScreen(
         )
         Spacer(Modifier.height(10.dp))
         Text(
-            text = description,
+            text = "Lorem ipsum dolorsitamet elitseddo consectetur adipiscing" +
+                    "eiusmod tempor incididunt utlabore etdolore magnaaliqua.",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = Color.Gray,
@@ -60,14 +56,14 @@ fun WelcomeScreen(
         )
         Spacer(Modifier.height(180.dp))
         Button(
-            onClick = onButtonClick,
+            onClick = onNavToLoginScreen,
             modifier = Modifier
                 .fillMaxWidth()
                 .size(50.dp)
                 .padding(start = 10.dp, end = 10.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = buttonColor,
-                contentColor = textColor
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             ),
             shape = RoundedCornerShape(16.dp),
             elevation = ButtonDefaults.buttonElevation(
@@ -75,7 +71,7 @@ fun WelcomeScreen(
             )
         ) {
             Text(
-                text = buttonText,
+                text = "Get Started",
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.SemiBold
             )
@@ -106,11 +102,6 @@ fun WelcomeScreen(
 @Composable
 fun WelcomeScreenPreview() {
     WelcomeScreen(
-        buttonText = "Get Started",
-        buttonColor = MaterialTheme.colorScheme.primary,
-        description = "Lorem ipsum dolorsitamet elitseddo consectetur adipiscing" +
-                "eiusmod tempor incididunt utlabore etdolore magnaaliqua.",
-        textColor = MaterialTheme.colorScheme.onPrimary,
-        onButtonClick = {}
+      onNavToLoginScreen = {}
     )
 }
