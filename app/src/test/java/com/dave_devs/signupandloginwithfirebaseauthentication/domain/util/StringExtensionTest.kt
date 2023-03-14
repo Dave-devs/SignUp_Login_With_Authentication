@@ -1,5 +1,8 @@
 package com.dave_devs.signupandloginwithfirebaseauthentication.domain.util
 
+import com.dave_devs.signupandloginwithfirebaseauthentication.core.containNumber
+import com.dave_devs.signupandloginwithfirebaseauthentication.core.containSpecialChar
+import com.dave_devs.signupandloginwithfirebaseauthentication.core.containUpperCase
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

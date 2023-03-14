@@ -1,4 +1,4 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.presentation.navigation
+package com.dave_devs.signupandloginwithfirebaseauthentication.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

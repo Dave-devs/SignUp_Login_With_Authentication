@@ -1,4 +1,4 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.domain.util
+package com.dave_devs.signupandloginwithfirebaseauthentication.core
 
 fun String.containNumber(): Boolean {
     val regex = Regex(".*\\d+.*")

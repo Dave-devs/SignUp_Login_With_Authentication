@@ -1,4 +1,4 @@
-package com.dave_devs.signupandloginwithfirebaseauthentication.domain.util
+package com.dave_devs.signupandloginwithfirebaseauthentication.core
 
 object Routes {
     const val WELCOME_SCREEN = "welcome_screen"
