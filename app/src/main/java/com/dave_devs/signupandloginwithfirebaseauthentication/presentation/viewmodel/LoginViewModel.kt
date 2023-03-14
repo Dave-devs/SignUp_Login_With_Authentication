@@ -19,7 +19,6 @@ class LoginViewModel @Inject constructor(
     private val repository: SignUpLoginRepository
 ): ViewModel() {
 
-    //Private set to be able to change in viewModel
     var loginState by mutableStateOf(LoginStates())
         private set
 
