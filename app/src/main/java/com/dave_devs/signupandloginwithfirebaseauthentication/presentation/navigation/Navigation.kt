@@ -42,7 +42,7 @@ fun Navigation(
                         popUpTo(0)
                     }
                 },
-                onNavToSignUpScreen = {
+                onSignUpClick = {
                     navController.navigate(SIGNUP_SCREEN) {
                         popUpTo(0)
                     }
@@ -56,7 +56,7 @@ fun Navigation(
                        popUpTo(0)
                    }
                 },
-                onNavToLoginScreen = {
+                onLoginClick = {
                     navController.navigate(LOGIN_SCREEN) {
                         popUpTo(0)
                     }
